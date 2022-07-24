@@ -4,25 +4,17 @@ using UnityEngine;
 
 public class Collectable : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        
+        // let the GameManager know there's one more collectable on the game
+        GameManager.Instance.increaseTotalCollectableItens();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            GameManager.Instance.increaseScore(1);
+            GameManager.Instance.increaseCollectableScore();
             Destroy(gameObject);
-            print(GameManager.Instance.getScore());
         }
     }
 
